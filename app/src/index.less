@@ -1,0 +1,276 @@
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #c9cdd4;
+  outline: none;
+  border-radius: 2px;
+}
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  border-radius: 2px;
+}
+// 头条
+.editor-toutiao {
+  // 主标题
+  h1 {
+    font-size: 18px;
+    line-height: 30px;
+    margin-top: 20px;
+    margin-bottom: 12px;
+    font-weight: 700;
+    &::before {
+      width: 16px;
+      height: 20px;
+      margin-right: 6px;
+      background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB3aWR0aD0iMTZweCIgaGVpZ2h0PSIxNnB4IiB2aWV3Qm94PSIwIDAgMTYgMTYiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CiAgICA8IS0tIEdlbmVyYXRvcjogU2tldGNoIDYwLjEgKDg4MTMzKSAtIGh0dHBzOi8vc2tldGNoLmNvbSAtLT4KICAgIDx0aXRsZT7kuInop5LlvaI8L3RpdGxlPgogICAgPGRlc2M+Q3JlYXRlZCB3aXRoIFNrZXRjaC48L2Rlc2M+CiAgICA8ZyBpZD0i5LiJ6KeS5b2iIiBzdHJva2U9Im5vbmUiIHN0cm9rZS13aWR0aD0iMSIgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj4KICAgICAgICA8cGF0aCBkPSJNNi4zNTc0OTI5Myw0LjQyOTE1NDg4IEwxMC41OTEzMDI1LDExLjQ4NTUwNDIgQzEwLjg3NTQ1MDcsMTEuOTU5MDg0NSAxMC43MjE4ODU2LDEyLjU3MzM0NDggMTAuMjQ4MzA1NCwxMi44NTc0OTI5IEMxMC4wOTI4OSwxMi45NTA3NDIyIDkuOTE1MDUzNTcsMTMgOS43MzM4MDk2MiwxMyBMMS4yNjYxOTAzOCwxMyBDMC43MTM5MDU2MjksMTMgMC4yNjYxOTAzNzksMTIuNTUyMjg0NyAwLjI2NjE5MDM3OSwxMiBDMC4yNjYxOTAzNzksMTEuODE4NzU2MSAwLjMxNTQ0ODIxMiwxMS42NDA5MTk2IDAuNDA4Njk3NDUzLDExLjQ4NTUwNDIgTDQuNjQyNTA3MDcsNC40MjkxNTQ4OCBDNC45MjY2NTUyMywzLjk1NTU3NDYxIDUuNTQwOTE1NDksMy44MDIwMDk1NSA2LjAxNDQ5NTc2LDQuMDg2MTU3NzEgQzYuMTU1MjQ1MzYsNC4xNzA2MDc0NyA2LjI3MzA0MzE2LDQuMjg4NDA1MjcgNi4zNTc0OTI5Myw0LjQyOTE1NDg4IFoiIGZpbGw9IiNGRjVFNUUiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDUuNTAwMDAwLCA4LjAwMDAwMCkgcm90YXRlKC0yNzAuMDAwMDAwKSB0cmFuc2xhdGUoLTUuNTAwMDAwLCAtOC4wMDAwMDApICI+PC9wYXRoPgogICAgPC9nPgo8L3N2Zz4=);
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-size: 16px 16px;
+      background-position-y: 6px;
+      content: '';
+      display: inline-block;
+      vertical-align: 1px;
+    }
+  }
+  h2 {
+    font-size: 17px;
+  }
+  hr {
+    box-sizing: content-box;
+    height: 0;
+    overflow: visible;
+  }
+  // 次标题/正文
+  p {
+    word-break: break-all;
+    font-size: 17px;
+    line-height: 30px;
+    margin: 20px 0;
+    line-height: 1.75;
+    text-align: justify;
+  }
+  // 加粗
+  strong {
+    font-weight: 700;
+  }
+  // 斜体
+  em {
+    font-style: italic;
+  }
+  // 中划线
+  s {
+    text-decoration: line-through;
+  }
+  // 图片
+  img {
+    height: auto;
+    max-width: 440px;
+    border-radius: 4px;
+  }
+  .img-wrap {
+    margin: 20px 0;
+    text-align: center;
+    .img-alt {
+      line-height: 16px;
+      font-size: 12px;
+      color: #999;
+      margin: 8px auto 0;
+    }
+  }
+  // 引用
+  blockquote {
+    background-color: #f8f8f8;
+    padding: 16px;
+    border-radius: 4px;
+    p {
+      margin: 0;
+    }
+  }
+  p.li-text {
+    font-size: 14px;
+    margin: 0;
+  }
+  p.li-text:first-child {
+    margin-bottom: 10px;
+  }
+  // 超链接
+  a {
+    color: #333;
+  }
+  p > .link-text {
+    font-family: PingFangSC-Regular;
+    margin: 0;
+    line-height: 28px;
+    color: #3370ff;
+  }
+  // 表格
+  .tableWrapper {
+    margin: 20px 0;
+    padding: 0;
+    overflow-x: scroll;
+    table {
+      td,
+      th {
+        border: 1px solid #d8d8d8;
+        padding: 9px 12px;
+      }
+    }
+  }
+}
+.editor-weixin {
+  section.h1 {
+    text-align: center;
+    span {
+      margin-top: 38px;
+      margin-bottom: 10px;
+      display: inline-block;
+      text-align: center;
+      line-height: 95px;
+      height: 65px;
+      border-bottom: 2px solid rgb(27, 95, 160);
+      color: rgb(60, 112, 198);
+      font-size: 22px;
+      letter-spacing: 0.544px;
+      background-image: url(https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fpic.sheji1688.net%2Felement_min_pic%2F18%2F10%2F13%2Fdb8ed8821bbbc8f6484a5df29fddca45.jpg%21%2Ffw%2F700%2Fquality%2F90%2Funsharp%2Ftrue%2Fcompress%2Ftrue&refer=http%3A%2F%2Fpic.sheji1688.net&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1666598080&t=c3b93289e3326d0dd2e91b451a9ea13d);
+      background-size: 92px;
+      background-position: 50% 50%;
+      background-repeat: no-repeat;
+    }
+  }
+  section.h2 {
+    font-weight: 500;
+    font-size: 20px;
+    color: #333;
+    margin-top: 30px;
+    margin-bottom: 10px;
+  }
+  // 加粗
+  strong {
+    font-weight: 700;
+  }
+  // 斜体
+  em {
+    font-style: italic;
+  }
+  // 中划线
+  s {
+    text-decoration: line-through;
+  }
+  // 图片
+  img {
+    height: auto;
+    max-width: 440px;
+    border-radius: 4px;
+    margin: 0 auto;
+    display: inline-block;
+  }
+  .img-wrap {
+    margin: 20px 0;
+    text-align: center;
+  }
+  blockquote {
+    padding-left: 10px;
+    border-left: 3px solid #dbdbdb;
+    line-height: 1.6;
+    color: #9a9a9a;
+    font-size: 15px;
+    padding-top: 4px;
+    margin: 1em 0;
+    p {
+      color: #9a9a9a;
+      margin-bottom: 1em;
+    }
+  }
+  // 表格
+  .tableWrapper {
+    margin: 20px 0;
+    padding: 0;
+    overflow-x: scroll;
+    table {
+      td,
+      th {
+        border: 1px solid #d8d8d8;
+        padding: 9px 12px;
+      }
+    }
+  }
+  ul,
+  ol {
+    font-size: 14px;
+  }
+  pre {
+    position: relative;
+  }
+}
+pre code.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 1em;
+}
+code.hljs {
+  padding: 3px 5px;
+}
+.hljs {
+  color: #a9b7c6;
+  background: #282b2e;
+}
+.hljs-bullet,
+.hljs-literal,
+.hljs-number,
+.hljs-symbol {
+  color: #6897bb;
+}
+.hljs-deletion,
+.hljs-keyword,
+.hljs-selector-tag {
+  color: #cc7832;
+}
+.hljs-link,
+.hljs-template-variable,
+.hljs-variable {
+  color: #629755;
+}
+.hljs-comment,
+.hljs-quote {
+  color: grey;
+}
+.hljs-meta {
+  color: #bbb529;
+}
+.hljs-addition,
+.hljs-attribute,
+.hljs-string {
+  color: #6a8759;
+}
+.hljs-section,
+.hljs-title,
+.hljs-type {
+  color: #ffc66d;
+}
+.hljs-name,
+.hljs-selector-class,
+.hljs-selector-id {
+  color: #e8bf6a;
+}
+.hljs-emphasis {
+  font-style: italic;
+}
+.hljs-strong {
+  font-weight: 700;
+}
+
+.line-numbers-wrapper {
+  position: absolute;
+  padding: 1em 1em;
+  color: #f2f2f2;
+  border: 10px solid transparent;
+}
+pre code.hljs {
+  padding-left: 3em;
+  border: 10px solid #413f3f;
+  border-radius: 10px;
+  box-sizing: content-box;
+}

@@ -15,19 +15,20 @@ export default {
   props: {
     value: {
       type: String,
-      default: '等待编辑...'
+      default: '等待编辑...',
     },
-    mediaType: String
+    mediaType: String,
   },
-  data () {
-    return {
-    }
+  data() {
+    return {}
   },
   methods: {
-    async coverToBase64 () {
+    async coverToBase64() {
       const imageSelectors = document.querySelectorAll('.wmt img')
-      const promiseList = Array.from(imageSelectors).map(selector => {
-        const url = 'http://127.0.0.1:3000/image/base64?filename=' + selector.getAttribute('data-filename')
+      const promiseList = Array.from(imageSelectors).map((selector) => {
+        const url =
+          'http://127.0.0.1:3000/image/base64?filename=' +
+          selector.getAttribute('data-filename')
         return new Promise((resolve) => {
           axios.get(url).then(({ data }) => {
             selector.src = data
@@ -37,28 +38,32 @@ export default {
       })
       return Promise.all(promiseList)
     },
-    async handleCopy () {
+    async handleCopy() {
       // html2canvas(document.querySelector('pre')).then(function (canvas) {
       //   document.body.appendChild(canvas);
       // });
       // await this.coverToBase64()
-      const clipboard = new ClipboardJS('#copy-btn');
+      const clipboard = new ClipboardJS('#copy-btn')
       clipboard.on('success', function (e) {
-        e.clearSelection();
-      });
-    }
+        e.clearSelection()
+      })
+    },
   },
   watch: {
-    value (newValue) {
-      if (!newValue) return;
-    }
+    value(newValue) {
+      if (!newValue) return
+    },
   },
-  setup (props) {
+  setup(props) {
     const { value, mediaType } = toRefs(props)
-    const { mdValue } = useMarkdown2Html(value, { mediaType: mediaType.value })
+    const { mdValue } = useMarkdown2Html(value, {
+      mediaType: mediaType.value,
+      isLine: false,
+      isCode2Image: false,
+    })
     // const { mdValue } = useMarkdown2Html(value, { mediaType: 'toutiao' })
     return { mdValue }
-  }
+  },
 }
 </script>
 

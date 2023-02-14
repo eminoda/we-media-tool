@@ -5,8 +5,8 @@
         <markdown-editor @change="handleMarkdownEditor" />
       </div>
       <div class="panel-wrap">
-        <html-render :value="mdValue" :mediaType="'weixin'" />
-        <!-- <html-render :value="mdValue" :mediaType="'toutiao'" /> -->
+        <!-- <html-render :value="mdValue" :mediaType="'weixin'" /> -->
+        <html-render :value="mdValue" :mediaType="'toutiao'" />
         <side-menu />
       </div>
     </div>

@@ -1,76 +1,20 @@
 const MarkdownIt = require('markdown-it')
 import { ref, onMounted, watch } from 'vue'
-
-const md = new MarkdownIt()
-  .use(require('markdown-it-highlightjs'))
-  .use(require('./lineNumbers'))
+import { toutiao, weixin } from '../config/mdStyle'
 
 // 设置包裹的标签，标签样式
 const mdConfig = {
-  toutiao: {
-    h1: {
-      open: '<h1>',
-      close: '</h1>',
-    },
-    h2: {
-      open: '<h1><strong>',
-      close: '</strong></h1>',
-    },
-    h3: {
-      open: '<strong>',
-      close: '</strong>',
-    },
-    blockquote: {
-      open: '<blockquote>',
-      close: '</blockquote>',
-    },
-    a: {
-      open: '<a class="link-text">',
-    },
-    table: {
-      open: '<div class="tableWrapper"><table>',
-      close: '</table></div>',
-    },
-    img: {
-      open: '<div class="img-wrap"><img>',
-      close: '</div>',
-    },
-  },
-  weixin: {
-    h1: {
-      open: '<section class="h1"><span>',
-      close: '</span></section>',
-    },
-    h2: {
-      open: '<section class="h1"><span>',
-      close: '</span></section>',
-    },
-    h3: {
-      open: '<section class="h2"><span>',
-      close: '</span></section>',
-    },
-    blockquote: {
-      open: '<blockquote>',
-      close: '</blockquote>',
-    },
-    img: {
-      open: '<p style="text-align:center">',
-      close: '</p>',
-    },
-    table: {
-      open: '<div class="tableWrapper"><table>',
-      close: '</table></div>',
-    },
-  },
+  toutiao,
+  weixin,
 }
 
-const imageParse = (el) => {
+const bufferImage2Base64 = (el) => {
   const filename = el.getAttribute('data-filename')
   const base64IsComplete = el.getAttribute('base64-is-complete')
   if (base64IsComplete && el.getAttribute('old-data-filename') == filename) {
     return
   }
-  // 解析路径
+  // 将 hexo 本地图片转为 base64 格式，用于文本复制
   fetch('http://127.0.0.1:3000/image/base64?filename=' + filename).then(
     (response) => {
       response.text().then((data) => {
@@ -88,7 +32,16 @@ const imageParse = (el) => {
 //   })
 // }
 
-export default function useMarkdown2Html(mdStr, { mediaType = 'weixin' } = {}) {
+export default function useMarkdown2Html(
+  mdStr,
+  { mediaType = 'weixin', isLine, isCode2Image } = {}
+) {
+  const md = new MarkdownIt()
+    .use(require('markdown-it-highlightjs'))
+    .use((mdStr) => {
+      return require('../config/lineNumbers')(mdStr, { isLine, isCode2Image })
+    })
+
   const mdValue = ref('')
 
   const mdRender = () => {
@@ -99,31 +52,10 @@ export default function useMarkdown2Html(mdStr, { mediaType = 'weixin' } = {}) {
         const token = tokens[idx]
         const nextToken = tokens[idx + 1]
         // console.log(token, token.content)
-        // 基础规则
         if (_tag == 'p') {
-          // 空标签（blockquote）
-          // if (token.type == 'paragraph_open') {
-          //   if (!token.children) {
-          //     return ''
-          //   }
-          // }
+          // 基础规则
         } else if (_tag == 'blockquote') {
-          // console.log(token)
-          // if (token.type == 'blockquote_close') {
-          //   return ''
-          // }
-          // if (
-          //   nextToken &&
-          //   nextToken.children &&
-          //   nextToken.children.length == 1 &&
-          //   nextToken.children[0].tag == 'p'
-          // ) {
-          //   const pTag = nextToken.children[0]
-          //   if (!pTag.children) {
-          //     console.log(nextToken)
-          //     tokens[idx + 1] = null
-          //   }
-          // }
+          // 引用
         }
         // 处理超链接
         else if (_tag == 'a') {
@@ -138,7 +70,6 @@ export default function useMarkdown2Html(mdStr, { mediaType = 'weixin' } = {}) {
             <p class="img-wrap">${self.renderToken(tokens, idx, options)}</p>
           `
         } else if (_tag == 'code') {
-          console.log()
           // return code2Canvas()
         }
         // li 下的元素是否为 a 标签。处理 ul/li 标签下的特殊展示
@@ -160,7 +91,7 @@ export default function useMarkdown2Html(mdStr, { mediaType = 'weixin' } = {}) {
         // 正文
         else if (_tag == '') {
           const content = token.content
-          // hexo 图片
+          // hexo 本地图片
           if (content.indexOf('asset_img ') != -1) {
             const str = content.split('asset_img ')[1]
             const [filename, title] = str.split(' ')
@@ -176,7 +107,7 @@ export default function useMarkdown2Html(mdStr, { mediaType = 'weixin' } = {}) {
               ['alt', title],
               ['data-filename', content],
               // 替换base64图片
-              ['onload', `javascript:(${imageParse})(this)`],
+              ['onload', `javascript:(${bufferImage2Base64})(this)`],
             ]
             return `<p class="img-wrap">${self.renderToken(
               tokens,

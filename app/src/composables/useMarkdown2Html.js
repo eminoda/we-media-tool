@@ -36,15 +36,14 @@ export default function useMarkdown2Html(
   mdStr,
   { mediaType = 'weixin', isLine, isCode2Image } = {}
 ) {
-  const md = new MarkdownIt()
-    .use(require('markdown-it-highlightjs'))
-    .use((mdStr) => {
-      return require('../config/lineNumbers')(mdStr, { isLine, isCode2Image })
-    })
-
   const mdValue = ref('')
 
-  const mdRender = () => {
+  const mdRender = (mediaType) => {
+    const md = new MarkdownIt()
+      .use(require('markdown-it-highlightjs'))
+      .use((mdStr) => {
+        return require('../config/lineNumbers')(mdStr, { isLine, isCode2Image })
+      })
     const customTag = (openOrClose) => {
       return (...args) => {
         const [tokens, idx, options, env, self] = args
@@ -155,8 +154,12 @@ export default function useMarkdown2Html(
     mdValue.value = md.render(mdStr.value)
   }
 
-  watch(mdStr, mdRender)
-
-  onMounted(mdRender)
+  watch(mdStr, ()=>{
+    console.log('watch')
+    mdRender(mediaType)
+  })
+  onMounted(() => {
+    mdRender(mediaType)
+  })
   return { mdValue, mdRender }
 }

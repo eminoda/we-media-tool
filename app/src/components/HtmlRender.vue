@@ -10,7 +10,7 @@
 const ClipboardJS = require('clipboard')
 const axios = require('axios')
 import useMarkdown2Html from '@/composables/useMarkdown2Html'
-import { toRefs } from 'vue'
+import { toRefs, watchEffect } from 'vue'
 export default {
   props: {
     value: {
@@ -53,16 +53,18 @@ export default {
     value(newValue) {
       if (!newValue) return
     },
+    mediaType(newValue) {
+      this.mdRender(newValue)
+    },
   },
   setup(props) {
     const { value, mediaType } = toRefs(props)
-    const { mdValue } = useMarkdown2Html(value, {
+    const { mdValue, mdRender } = useMarkdown2Html(value, {
       mediaType: mediaType.value,
       isLine: false,
       isCode2Image: false,
     })
-    // const { mdValue } = useMarkdown2Html(value, { mediaType: 'toutiao' })
-    return { mdValue }
+    return { mdValue, mdRender }
   },
 }
 </script>

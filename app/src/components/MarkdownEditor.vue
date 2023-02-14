@@ -56,7 +56,7 @@ export default {
           model.setValue(data)
         })
       })
-    }, 100)
+    }, 1000)
   },
 }
 </script>

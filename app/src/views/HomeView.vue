@@ -6,8 +6,8 @@
       </div>
       <div class="panel-wrap">
         <!-- <html-render :value="mdValue" :mediaType="'weixin'" /> -->
-        <html-render :value="mdValue" :mediaType="'toutiao'" />
-        <side-menu />
+        <html-render :value="mdValue" :mediaType="mediaType" />
+        <side-menu @choose="handleMediaType" />
       </div>
     </div>
     <div class="bottom-wrap">123</div>
@@ -18,19 +18,24 @@ import MarkdownEditor from '@/components/MarkdownEditor'
 import HtmlRender from '@/components/HtmlRender'
 import SideMenu from '@/components/SideMenu'
 export default {
-  name: "HomeView",
+  name: 'HomeView',
   components: { HtmlRender, MarkdownEditor, SideMenu },
-  data () {
+  data() {
     return {
-      mdValue: ''
+      mdValue: '',
+      mediaType: 'weixin',
     }
   },
   methods: {
-    handleMarkdownEditor (value) {
+    handleMarkdownEditor(value) {
       this.mdValue = value
-    }
-  }
-};
+    },
+    handleMediaType(mediaType) {
+      this.mediaType = mediaType
+      console.log(this.mediaType)
+    },
+  },
+}
 </script>
 
 <style lang="less" scoped>

@@ -1,6 +1,46 @@
 <template>
   <div class="side-menu-wrap">
     <a-tooltip placement="left">
+      <template #title>微信公众号</template>
+      <a-button @click="chooseMediaType('weixin')" size="large">
+        <template #icon>
+          <img src="@/assets/icon/weixin.png" alt="" class="side-menu-icon" />
+        </template>
+      </a-button>
+    </a-tooltip>
+    <a-tooltip placement="left">
+      <template #title>头条号</template>
+      <a-button @click="chooseMediaType('toutiao')" size="large">
+        <template #icon>
+          <img src="@/assets/icon/toutiao.png" alt="" class="side-menu-icon" />
+        </template>
+      </a-button>
+    </a-tooltip>
+    <a-tooltip placement="left">
+      <template #title>CSDN</template>
+      <a-button @click="chooseMediaType('csdn')" size="large">
+        <template #icon>
+          <img src="@/assets/icon/csdn.png" alt="" class="side-menu-icon" />
+        </template>
+      </a-button>
+    </a-tooltip>
+    <a-tooltip placement="left">
+      <template #title>知乎</template>
+      <a-button @click="chooseMediaType('zhihu')" size="large">
+        <template #icon>
+          <img src="@/assets/icon/zhihu.png" alt="" class="side-menu-icon" />
+        </template>
+      </a-button>
+    </a-tooltip>
+    <a-tooltip placement="left">
+      <template #title>简书</template>
+      <a-button @click="chooseMediaType('jianshu')" size="large">
+        <template #icon>
+          <img src="@/assets/icon/jianshu.png" alt="" class="side-menu-icon" />
+        </template>
+      </a-button>
+    </a-tooltip>
+    <a-tooltip placement="left">
       <template #title>复制 </template>
       <a-button
         @click="handleCopy"
@@ -27,23 +67,26 @@ import useCopy from '@/composables/useCopy'
 export default {
   components: { CopyOutlined, WechatOutlined },
   methods: {
-    handleCopy () {
+    handleCopy() {
       useCopy('copy-btn', '.wmt')
     },
-    handlePushlish () {
+    handlePushlish() {
       window.ipcRenderer.send('cmd', {
         name: 'say-hello',
         data: 'weixin',
-      });
+      })
       window.ipcRenderer.on('cmd', (event, arg = {}) => {
-        const { name, data } = arg;
+        const { name, data } = arg
         switch (name) {
           case 'reply-hello':
-            console.log(data);
+            console.log(data)
         }
-      });
-    }
-  }
+      })
+    },
+    chooseMediaType(mediaType) {
+      this.$emit('choose', mediaType)
+    },
+  },
 }
 </script>
 
@@ -57,6 +100,10 @@ export default {
   display: flex;
   flex-direction: column;
   [data-clipboard-target] {
+  }
+  .side-menu-icon {
+    width: 20px;
+    height: 20px;
   }
 }
 </style>

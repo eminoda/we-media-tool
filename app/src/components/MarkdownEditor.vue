@@ -37,7 +37,7 @@ export default {
         let count = text.split('**').length
         while (count > 0) {
           const irregularReg =
-            /(\s{0,3})\*\*(\s*)([\u4e00-\u9fa5_a-zA-Z0-9（）]+\s*[\u4e00-\u9fa5_a-zA-Z0-9（）]+)(\s*)\*\*(\s{0,3})/g
+            /(\s{0,3})\*\*(\s*)([\u4e00-\u9fa5_a-zA-Z0-9（）\\/]+\s*[\u4e00-\u9fa5_a-zA-Z0-9（）\\/]+)(\s*)\*\*(\s{0,3})/g
           newLineText = text.replace(irregularReg, ' **$3** ')
           // 无变动
           if (text == newLineText) {

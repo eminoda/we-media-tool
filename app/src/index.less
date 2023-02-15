@@ -12,6 +12,109 @@
   box-shadow: none;
   border-radius: 2px;
 }
+// csdn
+.editor-csdn,
+.editor-juejin,
+.editor-zhihu {
+  // 主标题
+  h1 {
+    font-size: 18px;
+    line-height: 30px;
+    margin-top: 20px;
+    margin-bottom: 12px;
+    font-weight: 700;
+  }
+  h2 {
+    font-size: 17px;
+    font-weight: 700;
+  }
+  h3 {
+    font-size: 16px;
+    font-weight: 700;
+  }
+  hr {
+    box-sizing: content-box;
+    height: 0;
+    overflow: visible;
+  }
+  // 次标题/正文
+  p {
+    word-break: break-all;
+    font-size: 17px;
+    line-height: 30px;
+    margin: 20px 0;
+    line-height: 1.75;
+    text-align: justify;
+  }
+  // 加粗
+  strong {
+    font-weight: 700;
+    color: #13c2c2;
+  }
+  // 斜体
+  em {
+    font-style: italic;
+  }
+  // 中划线
+  s {
+    text-decoration: line-through;
+  }
+  // 图片
+  img {
+    height: auto;
+    max-width: 440px;
+    border-radius: 4px;
+  }
+  .img-wrap {
+    margin: 20px 0;
+    text-align: center;
+    .img-alt {
+      line-height: 16px;
+      font-size: 12px;
+      color: #999;
+      margin: 8px auto 0;
+    }
+  }
+  // 引用
+  blockquote {
+    background-color: #f8f8f8;
+    padding: 16px;
+    border-radius: 4px;
+    p {
+      margin: 0;
+    }
+  }
+  p.li-text {
+    font-size: 14px;
+    margin: 0;
+  }
+  p.li-text:first-child {
+    margin-bottom: 10px;
+  }
+  // 超链接
+  a {
+    color: #333;
+  }
+  p > .link-text {
+    font-family: PingFangSC-Regular;
+    margin: 0;
+    line-height: 28px;
+    color: #3370ff;
+  }
+  // 表格
+  .tableWrapper {
+    margin: 20px 0;
+    padding: 0;
+    overflow-x: scroll;
+    table {
+      td,
+      th {
+        border: 1px solid #d8d8d8;
+        padding: 9px 12px;
+      }
+    }
+  }
+}
 // 头条
 .editor-toutiao {
   // 主标题
@@ -55,6 +158,7 @@
   // 加粗
   strong {
     font-weight: 700;
+    color: #006d75;
   }
   // 斜体
   em {
@@ -148,10 +252,12 @@
     color: #333;
     margin-top: 30px;
     margin-bottom: 10px;
+    color: #08979c;
   }
   // 加粗
   strong {
     font-weight: 700;
+    color: #36cfc9;
   }
   // 斜体
   em {

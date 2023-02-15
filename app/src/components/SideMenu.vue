@@ -25,6 +25,14 @@
       </a-button>
     </a-tooltip>
     <a-tooltip placement="left">
+      <template #title>掘金</template>
+      <a-button @click="chooseMediaType('juejin')" size="large">
+        <template #icon>
+          <img src="@/assets/icon/juejin.png" alt="" class="side-menu-icon" />
+        </template>
+      </a-button>
+    </a-tooltip>
+    <a-tooltip placement="left">
       <template #title>知乎</template>
       <a-button @click="chooseMediaType('zhihu')" size="large">
         <template #icon>
@@ -32,14 +40,14 @@
         </template>
       </a-button>
     </a-tooltip>
-    <a-tooltip placement="left">
+    <!-- <a-tooltip placement="left">
       <template #title>简书</template>
       <a-button @click="chooseMediaType('jianshu')" size="large">
         <template #icon>
           <img src="@/assets/icon/jianshu.png" alt="" class="side-menu-icon" />
         </template>
       </a-button>
-    </a-tooltip>
+    </a-tooltip> -->
     <a-tooltip placement="left">
       <template #title>复制 </template>
       <a-button

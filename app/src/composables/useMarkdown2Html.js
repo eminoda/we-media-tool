@@ -1,11 +1,14 @@
 const MarkdownIt = require('markdown-it')
 import { ref, onMounted, watch } from 'vue'
-import { toutiao, weixin } from '../config/mdStyle'
+import { toutiao, weixin, csdn, juejin, zhihu } from '../config/mdStyle'
 
 // 设置包裹的标签，标签样式
 const mdConfig = {
   toutiao,
   weixin,
+  csdn,
+  juejin,
+  zhihu,
 }
 
 const bufferImage2Base64 = (el) => {
@@ -119,6 +122,7 @@ export default function useMarkdown2Html(
         }
 
         // 规则
+        // console.log(mdConfig, mediaType)
         if (mdConfig[mediaType][_tag] && openOrClose) {
           return mdConfig[mediaType][_tag][openOrClose]
         }
@@ -154,7 +158,7 @@ export default function useMarkdown2Html(
     mdValue.value = md.render(mdStr.value)
   }
 
-  watch(mdStr, ()=>{
+  watch(mdStr, () => {
     console.log('watch')
     mdRender(mediaType)
   })
